@@ -13,17 +13,7 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      squares: [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
+      squares: Array(16).fill(null),
       isX: true
     }
     this.handleClick = this.handleClick.bind(this)
@@ -47,7 +37,7 @@ class App extends Component {
   }
 
   reset () {
-    this.setState({ squares: Array(9).fill(null) })
+    this.setState({ squares: Array(16).fill(null) })
   }
 
   componentDidUpdate () {
@@ -56,6 +46,12 @@ class App extends Component {
         this.handleClick(computer(this.state.squares))
       }, 500)
     }
+  }
+
+  renderCell (i) {
+    return (
+      <Cell value={this.state.squares[i]} onClick={() => this.handleClick(i)} />
+    )
   }
 
   render () {
@@ -75,19 +71,28 @@ class App extends Component {
         <Reset onClick={this.reset} />
         <div className='App'>
           <div className='row'>
-            <Cell value={this.state.squares[0]} onClick={() => this.handleClick(0)} />
-            <Cell value={this.state.squares[1]} onClick={() => this.handleClick(1)} />
-            <Cell value={this.state.squares[2]} onClick={() => this.handleClick(2)} />
+            {this.renderCell(0)}
+            {this.renderCell(1)}
+            {this.renderCell(2)}
+            {this.renderCell(3)}
           </div>
           <div className='row'>
-            <Cell value={this.state.squares[3]} onClick={() => this.handleClick(3)} />
-            <Cell value={this.state.squares[4]} onClick={() => this.handleClick(4)} />
-            <Cell value={this.state.squares[5]} onClick={() => this.handleClick(5)} />
+            {this.renderCell(4)}
+            {this.renderCell(5)}
+            {this.renderCell(6)}
+            {this.renderCell(7)}
           </div>
           <div className='row'>
-            <Cell value={this.state.squares[6]} onClick={() => this.handleClick(6)} />
-            <Cell value={this.state.squares[7]} onClick={() => this.handleClick(7)} />
-            <Cell value={this.state.squares[8]} onClick={() => this.handleClick(8)} />
+            {this.renderCell(8)}
+            {this.renderCell(9)}
+            {this.renderCell(10)}
+            {this.renderCell(11)}
+          </div>
+          <div className='row'>
+            {this.renderCell(12)}
+            {this.renderCell(13)}
+            {this.renderCell(14)}
+            {this.renderCell(15)}
           </div>
         </div>
       </div>
